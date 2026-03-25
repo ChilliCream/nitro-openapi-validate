@@ -1,0 +1,28 @@
+name: "Nitro OpenAPI Validate"
+description: "Validates OpenAPI documents against the Nitro registry"
+author: "ChilliCream"
+branding:
+  icon: "check-circle"
+  color: "purple"
+
+inputs:
+  stage:
+    description: "The name of the stage"
+    required: true
+  openapi-collection-id:
+    description: "The ID of the OpenAPI collection"
+    required: true
+  api-key:
+    description: "API key for authentication"
+    required: true
+    secret: true
+  pattern:
+    description: "Newline-separated list of glob patterns for selecting OpenAPI document files"
+    required: true
+  cloud-url:
+    description: "The URL of the Nitro registry"
+    required: false
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
