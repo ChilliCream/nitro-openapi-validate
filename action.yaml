@@ -3,7 +3,7 @@ description: "Validates OpenAPI documents against the Nitro registry"
 author: "ChilliCream"
 branding:
   icon: "check-circle"
-  color: "purple"
+  color: "green"
 
 inputs:
   stage:
@@ -22,7 +22,7 @@ inputs:
   cloud-url:
     description: "The URL of the Nitro registry"
     required: false
-  commentMode:
+  comment-mode:
     description: "Controls pull request feedback on validation failure: comment, review, or none"
     required: false
     default: "none"
