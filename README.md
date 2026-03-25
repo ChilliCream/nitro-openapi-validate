@@ -13,6 +13,8 @@ A GitHub Action that validates OpenAPI documents against the Nitro registry.
     patterns:
       - ./endpoints/**/*.graphql
       - ./models/Person.graphql
+    # Optional
+    cloud-url: <cloud-url>
 ```
 
 ## Inputs
