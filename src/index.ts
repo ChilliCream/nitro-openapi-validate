@@ -12,11 +12,7 @@ async function executeCommand(): Promise<void> {
     const apiKey = core.getInput("api-key", { required: true });
     const cloudUrl = core.getInput("cloud-url") || null;
 
-    const patterns = core
-      .getInput("pattern", { required: true })
-      .split("\n")
-      .map((f) => f.trim())
-      .filter((f) => f.length > 0);
+    const patterns = core.getMultilineInput("patterns", { required: true });
 
     const args: string[] = [
       "openapi",
