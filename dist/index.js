@@ -31663,6 +31663,13 @@ __webpack_unused_export__ = defaultContentType
 /************************************************************************/
 var __webpack_exports__ = {};
 
+// NAMESPACE OBJECT: ./node_modules/@actions/github/lib/github.js
+var github_namespaceObject = {};
+__nccwpck_require__.r(github_namespaceObject);
+__nccwpck_require__.d(github_namespaceObject, {
+  _: () => (github_context)
+});
+
 ;// CONCATENATED MODULE: external "os"
 const external_os_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("os");
 ;// CONCATENATED MODULE: ./node_modules/@actions/core/lib/utils.js
@@ -39781,7 +39788,7 @@ async function installNitro(version) {
     addPath(toolPath);
 }
 function getSourceMetadata(jobId) {
-    const { context } = github;
+    const { /* context */ "_": context } = github_namespaceObject;
     const repositoryUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}`;
     let commitHash = context.sha;
     let ref = context.ref || undefined;
@@ -39960,6 +39967,8 @@ async function executeCommand() {
             required: true,
         });
         const apiKey = getInput("api-key", { required: true });
+        const jobId = getInput("job-id") || undefined;
+        const sourceMetadata = JSON.stringify(getSourceMetadata(jobId));
         const cloudUrl = getInput("cloud-url") || null;
         getCommentMode();
         const patterns = getMultilineInput("patterns", { required: true });
@@ -39970,6 +39979,8 @@ async function executeCommand() {
             stage,
             "--openapi-collection-id",
             openapiCollectionId,
+            "--source-metadata",
+            sourceMetadata,
         ];
         for (const pattern of patterns) {
             args.push("--pattern", pattern);

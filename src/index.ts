@@ -2,6 +2,7 @@ import * as core from "@actions/core";
 import * as exec from "@actions/exec";
 import {
   installNitro,
+  getSourceMetadata,
   getCommentMode,
 } from "@chillicream/nitro-github-actions";
 import pkg from "../package.json" with { type: "json" };
@@ -15,6 +16,8 @@ async function executeCommand(): Promise<void> {
       required: true,
     });
     const apiKey = core.getInput("api-key", { required: true });
+    const jobId = core.getInput("job-id") || undefined;
+    const sourceMetadata = JSON.stringify(getSourceMetadata(jobId));
     const cloudUrl = core.getInput("cloud-url") || null;
     getCommentMode();
 
@@ -27,6 +30,8 @@ async function executeCommand(): Promise<void> {
       stage,
       "--openapi-collection-id",
       openapiCollectionId,
+      "--source-metadata",
+      sourceMetadata,
     ];
 
     for (const pattern of patterns) {
